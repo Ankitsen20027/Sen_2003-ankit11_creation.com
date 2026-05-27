@@ -1,22 +1,31 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>rain_creation</title>
-<link rel="stylesheet" href="style.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rain Creation</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="rain">
-    <a href="file:///C:/Users/This%20Pc/OneDrive/ANIMATION/website/myweb.html">
-<img class="crow" src="birds.gif"></a>
-</div>
-<audio id="song">
-<source src="rain.mp3">
-</audioi>
-<script>
-window.addEventListener('click', () =>
-{
-document.getElementById("song").play();
-});
-</script>
+
+    <div class="rain"></div>
+
+    <a href="index.html">
+        <img class="crow" src="birds.gif" alt="Flying Crow">
+    </a>
+
+    <audio id="song" loop>
+        <source src="rain.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        window.addEventListener('click', () => {
+            const audio = document.getElementById("song");
+            audio.play().catch(error => {
+                console.log("Audio play failed due to browser restriction:", error);
+            });
+        });
+    </script>
+
 </body>
 </html>
