@@ -1,115 +1,160 @@
-body
-{
-height: 100vh;
-width: 100%;
-background-image: url(back.jpeg);
-background-size: cover;
-background-position: center;
-position: relative;
-overflow-x: hidden;
+/* Universal Resets */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
 }
 
-.rain
-{
-height: 100vh;
-background: url(9.png);
-animation: rain 0.7s linear infinite;
-}
-.rain:before
-{
-content: '';
-position: absolute;
-width: 100%;
-height: 100%;
-background: #fff;
-animation: lighting 0.4s linear infinite;
-opacity: 0;
-}
-@keyframes rain
-{
-0%
-{
-background-position: 0% 0%;
-}
-100%
-{
-background-position: 20% 100%;
-}
+body {
+    height: 100vh;
+    width: 100%;
+    background-image: url(back.jpeg);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden; /* X aur Y dono hidden taaki scrollbar na aaye */
 }
 
-@keyframes lighting
-{
-0%
-{
-opacity: 0;
-}
-10%
-{
-opacity: 0;
-}
-11%
-{
-opacity: 1;
-}
-14%
-{
-opacity: 0;
-}
-20%
-{
-opacity: 0;
-}
-21%
-{
-opacity: 1;
-}
-24%
-{
-opacity: 0;
-}
-104%
-{
-opacity: 0;
-}
+/* Rain Effect Layer */
+.rain {
+    position: absolute; /* Isko absolute kiya taaki ye background ke upar baithe */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: url(9.png);
+    animation: rain 0.7s linear infinite;
+    z-index: 1; /* Background ke upar */
 }
 
-.crow
-{
-position: relative;
-left: 100%;
-width: 20%;
-animation: fly 4s infinite;
+.rain:before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    animation: lighting 4s linear infinite; /* Speed thodi kam ki taaki aankhon me na chube */
+    opacity: 0;
+    z-index: 2;
 }
 
-
-@keyframes fly
-{ 
-0%
-{
-right: -20%;
-top: 5px;
+/* Navbar & Menu Styling (Jo kharab dikh raha tha) */
+.main {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    z-index: 10; /* Sabse upar taaki links par click ho sake */
+    padding: 20px 50px;
 }
 
-25%
-{
-top: 120px;
+.logo img {
+    width: 80px; /* Logo ka size select kiya */
+    float: left;
+    height: auto;
 }
 
-50%
-{
-top: 13px;
+ul {
+    float: right;
+    list-style: none;
+    margin-top: 25px;
 }
 
-75%
-{
-top: 25px;
+ul li {
+    display: inline-block; /* Isse saare menu links ek line me aa gaye */
+    margin-left: 25px;
 }
 
-100%
-{
-left: -100px;
-top: 30px;
-}
+ul li a {
+    text-decoration: none;
+    color: #fff; /* Links ka color white kiya */
+    font-weight: bold;
+    font-size: 16px;
+    transition: 0.3s ease;
 }
 
+ul li a:hover, ul li.active a {
+    color: #ff3333; /* Hover karne par डरावना Red color */
+}
 
+/* Center Title Text */
+.title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.title h1 {
+    color: #fff;
+    font-size: 60px;
+    letter-spacing: 5px;
+    text-shadow: 0px 0px 20px rgba(255,255,255,0.6); /* Glowing effect */
+}
+
+/* Button Styling */
+.button {
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.btn {
+    border: 2px solid #fff;
+    padding: 10px 30px;
+    color: #fff;
+    text-decoration: none;
+    transition: 0.4s ease;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+/* Crow Styling & Fixed Animation */
+.crow {
+    position: absolute;
+    top: 50px;
+    left: 100%;
+    width: 150px; /* Crow ka size handle kiya */
+    animation: fly 6s linear infinite;
+    z-index: 5;
+}
+
+/* --- ANIMATIONS (FIXED) --- */
+
+@keyframes rain {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 20% 100%; }
+}
+
+@keyframes lighting {
+    0%, 90%, 100% { opacity: 0; }
+    92% { opacity: 0.6; }
+    94% { opacity: 0; }
+    96% { opacity: 0.8; }
+}
+
+@keyframes fly { 
+    0% {
+        left: 100%;
+        top: 50px;
+    }
+    25% {
+        top: 150px;
+    }
+    50% {
+        top: 50px;
+    }
+    75% {
+        top: 100px;
+    }
+    100% {
+        left: -20%; /* Ekdum screen ke bahar nikal jayega left se */
+        top: 80px;
+    }
+}
